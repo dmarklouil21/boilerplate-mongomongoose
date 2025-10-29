@@ -27,7 +27,7 @@ const createAndSavePerson = (done) => {
 
   janeFonda.save((err, data) => {
     if (err) return console.error(err);
-    done(null /*, data*/);
+    done(null, data);
   });
 };
 
