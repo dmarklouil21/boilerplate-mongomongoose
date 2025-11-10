@@ -118,7 +118,10 @@ const queryChain = (done) => {
   findQuery.sort({ name: -1 })
   findQuery.limit(2)
   findQuery.select({ age: 0 })
-  findQuery.exec((err, data) => done(err, data))
+  findQuery.exec((err, data) => {
+    if (err) return console.log(err);
+    done(err, data);
+  })
 };
 
 /** **Well Done !!**
