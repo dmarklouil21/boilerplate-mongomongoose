@@ -120,7 +120,7 @@ const queryChain = (done) => {
   findQuery.select({ age: 0 })
   findQuery.exec((err, data) => {
     if (err) return console.log(err);
-    done(err, data);
+    done(null, data);
   })
 };
 
