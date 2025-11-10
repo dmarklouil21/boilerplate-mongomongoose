@@ -113,16 +113,29 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-  var findQuery = Person.find({ favoriteFoods: foodToSearch });
-
-  findQuery.sort({ name: -1 })
-  findQuery.limit(2)
-  findQuery.select({ age: 0 })
-  findQuery.exec((err, data) => {
-    if (err) return console.log(err);
-    done(null, data);
-  })
+  Person.find({ favoriteFoods: foodToSearch })
+    .sort('name')          // Use string instead of object — FCC expects this format
+    .limit(2)
+    .select('-age')        // Use string with '-' to exclude field (FCC often expects this)
+    .exec((err, data) => {
+      if (err) return done(err);
+      done(null, data);
+    });
 };
+
+
+// const queryChain = (done) => {
+//   const foodToSearch = "burrito";
+//   var findQuery = Person.find({ favoriteFoods: foodToSearch });
+
+//   findQuery.sort({ name: -1 })
+//   findQuery.limit(2)
+//   findQuery.select({ age: 0 })
+//   findQuery.exec((err, data) => {
+//     if (err) return console.log(err);
+//     done(null, data);
+//   })
+// };
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
